@@ -1,0 +1,12 @@
+td {
+  padding: 0.5rem 1rem;
+  border-bottom: 1px solid #ddd;
+}
+.status {
+  font-weight: bold;
+  border-radius: 4px;
+  text-align: center;
+}
+.en-attente { color: #e67e22; }
+.livree { color: #27ae60; }
+.annulee { color: #e74c3c; }
