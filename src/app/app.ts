@@ -1,12 +1,12 @@
-import { Component, signal } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { AppNavbar } from './app-navbar/app-navbar';
+import { OrdersList } from './orders-list/orders-list';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet],
+  imports: [AppNavbar, OrdersList],
   templateUrl: './app.html',
-  styleUrl: './app.css'
+  styleUrl: './app.css',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class App {
-  protected readonly title = signal('gestion-de-commandes');
-}
+export class App {}
