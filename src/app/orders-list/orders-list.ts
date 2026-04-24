@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
+import { NgFor } from '@angular/common';
 import { Order } from '../model/order.model';
 import { ORDERS } from '../model/list-orders';
 import { OrderItem } from '../order-item/order-item';
 
 @Component({
   selector: 'app-orders-list',
-  imports: [OrderItem],
+  imports: [NgFor, OrderItem],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <section class="orders">
@@ -22,9 +23,10 @@ import { OrderItem } from '../order-item/order-item';
           </tr>
         </thead>
         <tbody>
-          @for (order of orders(); track order.id) {
-            <app-order-item [order]="order" />
-          }
+          <app-order-item
+            *ngFor="let order of orders(); trackBy: trackById"
+            [order]="order"
+          />
         </tbody>
       </table>
     </section>
@@ -33,4 +35,8 @@ import { OrderItem } from '../order-item/order-item';
 })
 export class OrdersList {
   protected readonly orders = signal<Order[]>(ORDERS);
+
+  trackById(_index: number, order: Order): number {
+    return order.id;
+  }
 }
