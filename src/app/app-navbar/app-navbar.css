@@ -25,3 +25,7 @@ a {
 a:hover {
   text-decoration: underline;
 }
+a.active {
+  text-decoration: underline;
+  color: #3498db;
+}
