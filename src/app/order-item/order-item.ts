@@ -1,8 +1,10 @@
 import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { NgClass, NgStyle } from '@angular/common';
 import { Order } from '../model/order.model';
 
 @Component({
   selector: 'app-order-item',
+  imports: [NgClass, NgStyle],
   changeDetection: ChangeDetectionStrategy.OnPush,
   template: `
     <tr>
@@ -10,8 +12,16 @@ import { Order } from '../model/order.model';
       <td>{{ order().client }}</td>
       <td>{{ order().product }}</td>
       <td>{{ order().quantity }}</td>
-      <td>{{ order().total }} €</td>
-      <td [class]="'status ' + statusClass()">
+      <td
+        [ngStyle]="{ 'font-weight': order().total >= 200 ? 'bold' : 'normal',
+                      'color': order().total >= 200 ? '#2c3e50' : 'inherit' }">
+        {{ order().total }} €
+      </td>
+      <td
+        [ngClass]="{ 'status': true,
+                     'livree': order().status === 'Livrée',
+                     'en-attente': order().status === 'En attente',
+                     'annulee': order().status === 'Annulée' }">
         {{ order().status }}
       </td>
     </tr>
@@ -21,11 +31,4 @@ import { Order } from '../model/order.model';
 })
 export class OrderItem {
   order = input.required<Order>();
-
-  protected statusClass(): string {
-    const statusOrder = this.order().status;
-    if (statusOrder === 'Livrée') return 'livree';
-    if (statusOrder === 'Annulée') return 'annulee';
-    return 'en-attente';
-  }
 }

@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { provideRouter } from '@angular/router';
 import { AppNavbar } from './app-navbar';
 
 describe('AppNavbar', () => {
@@ -9,6 +10,7 @@ describe('AppNavbar', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [AppNavbar],
+      providers: [provideRouter([])],
     }).compileComponents();
 
     fixture = TestBed.createComponent(AppNavbar);
@@ -32,8 +34,10 @@ describe('AppNavbar', () => {
 
   it('should render navigation links', () => {
     const links = el.querySelectorAll('ul li a');
-    expect(links.length).toBe(2);
+    expect(links.length).toBe(4);
     expect(links[0].textContent).toContain('Accueil');
-    expect(links[1].textContent).toContain('Commandes');
+    expect(links[1].textContent).toContain('Produits');
+    expect(links[2].textContent).toContain('Commandes');
+    expect(links[3].textContent).toContain('Clients');
   });
 });
