@@ -1,71 +1,37 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
-import { Product } from '../model/product.model';
-import { PRODUCTS } from '../model/list-products';
+import { Component } from '@angular/core';
+import { ProductsListService } from './products-list.service';
 import { ProductItem } from './product-item/product-item';
+import { Input, Output, EventEmitter } from '@angular/core';
+import { type Product } from '../model/product.model';
 
 @Component({
   selector: 'app-products-list',
-  imports: [FormsModule, ProductItem],
-  changeDetection: ChangeDetectionStrategy.OnPush,
+  imports: [ProductItem],
   templateUrl: './products-list.html',
-  styleUrl: './products-list.css',
+  styleUrls: ['./products-list.css'],
 })
 export class ProductsList {
-  protected readonly products = signal<Product[]>([...PRODUCTS]);
-  protected readonly showForm = signal(false);
-  protected readonly editingProduct = signal<Product | null>(null);
 
-  formName = '';
-  formPrice = 0;
-  formDescription = '';
+  @Input({ required: true }) product!: Product;
 
-  openAddForm() {
-    this.editingProduct.set(null);
-    this.formName = '';
-    this.formPrice = 0;
-    this.formDescription = '';
-    this.showForm.set(true);
+  @Output() updateProduct = new EventEmitter<Product>();
+  @Output() deleteProduct = new EventEmitter<Product>();
+  @Output() addNewProduct = new EventEmitter<Product>();
+
+  isAddingProduct = false;
+
+  constructor(private productsListService: ProductsListService) {}
+
+  get products() {
+    return this.productsListService.getProductsList();
   }
 
-  openEditForm(product: Product) {
-    this.editingProduct.set(product);
-    this.formName = product.name;
-    this.formPrice = product.price;
-    this.formDescription = product.description;
-    this.showForm.set(true);
+  onStartAddingProduct() {
+    this.isAddingProduct = true;
   }
 
-  saveProduct() {
-    if (!this.formName.trim()) return;
-
-    const editing = this.editingProduct();
-    if (editing) {
-      this.products.update(list =>
-        list.map(p =>
-          p.productId === editing.productId
-            ? { ...p, name: this.formName.trim(), price: this.formPrice, description: this.formDescription.trim() }
-            : p
-        )
-      );
-    } else {
-      
-      const newProduct: Product = {
-        productId: Math.random().toString(),
-        name: this.formName.trim(),
-        price: this.formPrice,
-        description: this.formDescription.trim(),
-      };
-      this.products.update(list => [...list, newProduct]);
-    }
-    this.showForm.set(false);
-  }
-
-  deleteProduct(product: Product) {
-    this.products.update(list => list.filter(p => p.productId !== product.productId));
-  }
-
-  cancelEdit() {
-    this.showForm.set(false);
+  onCloseAddingProduct() {
+    this.isAddingProduct = false;
+    
   }
 }

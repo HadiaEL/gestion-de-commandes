@@ -23,11 +23,11 @@ export class OrdersListComponent {
   }
 
   get selectedOrdersListByClientId(): Order[] {
-    return this.ordersListService.getOrdersByClientId(this.clientId);
+    return this.ordersListService.getOrdersByClientId(Number(this.clientId));
   }
 
   get selectedOrdersListByProductId(): Order[] {
-    return this.ordersListService.getOrdersByProductId(this.productId);
+    return this.ordersListService.getOrdersByProductId(Number(this.productId));
   }
 
 }

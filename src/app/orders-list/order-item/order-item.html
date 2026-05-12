@@ -1,7 +1,7 @@
 <tr>
   <td>{{ order.orderId }}</td>
-  <td>{{ order.clientId }}</td>
-  <td>{{ order.productId }}</td>
+  <td>{{ order.client.clientId }}</td>
+  <td>{{ order.product.productId }}</td>
   <td>{{ order.quantity }}</td>
   <td
     [ngStyle]="{

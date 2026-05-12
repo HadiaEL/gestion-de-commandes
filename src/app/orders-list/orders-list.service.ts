@@ -11,23 +11,23 @@ export class OrdersListService {
         return this.ordersList;
     }
 
-    getOrderById(id: string): Order | undefined {
-        return this.ordersList.find(order => order.orderId === id);
+    getOrderById(orderId: number): Order | undefined {
+        return this.ordersList.find(order => order.orderId === orderId);
     }
 
-    getOrdersByClientId(clientId: string): Order[] {
-        return this.ordersList.filter(order => order.clientId === clientId);
+    getOrdersByClientId(clientId: number): Order[] {
+        return this.ordersList.filter(order => order.client.clientId === clientId);
     }
 
-    getOrdersByProductId(productId: string): Order[] {
-        return this.ordersList.filter(order => order.productId === productId);
+    getOrdersByProductId(productId: number): Order[] {
+        return this.ordersList.filter(order => order.product.productId === productId);
     }
 
-    addOrder(order: Order, clientId: string) {
+    addOrder(order: Order, clientId: number) {
         
         this.ordersList.push({
             ...order,
-            clientId: clientId
+            client: { clientId } as any
         });
     }   
 

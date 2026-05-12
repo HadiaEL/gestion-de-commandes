@@ -50,7 +50,7 @@ export class ClientsList {
       );
     } else {
       const newClient: Client = {
-        clientId: Math.random().toString(),
+        clientId: Math.random(),
         name: this.formName.trim(),
         email: this.formEmail.trim(),
         phone: this.formPhone.trim(),
