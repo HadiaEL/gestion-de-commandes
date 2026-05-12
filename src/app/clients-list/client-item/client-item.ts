@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
-import { type Client } from '../model/client.model';
+import { type Client } from '../../model/client.model';
 
 @Component({
   selector: 'app-client-item',

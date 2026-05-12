@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { Product } from '../model/product.model';
 import { PRODUCTS } from '../model/list-products';
-import { ProductItem } from '../product-item/product-item';
+import { ProductItem } from './product-item/product-item';
 
 @Component({
   selector: 'app-products-list',

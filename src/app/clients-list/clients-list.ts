@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { type Client } from '../model/client.model';
 import { CLIENTS } from '../model/list-clients';
-import { ClientItem } from '../client-item/client-item';
+import { ClientItem } from './client-item/client-item';
 
 @Component({
   selector: 'app-clients-list',
