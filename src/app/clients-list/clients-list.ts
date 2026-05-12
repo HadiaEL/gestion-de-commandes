@@ -43,15 +43,14 @@ export class ClientsList {
     if (editing) {
       this.clients.update(list =>
         list.map(c =>
-          c.id === editing.id
+          c.clientId === editing.clientId
             ? { ...c, name: this.formName.trim(), email: this.formEmail.trim(), phone: this.formPhone.trim() }
             : c
         )
       );
     } else {
-      const maxId = this.clients().reduce((max, c) => Math.max(max, c.id), 0);
       const newClient: Client = {
-        id: maxId + 1,
+        clientId: Math.random().toString(),
         name: this.formName.trim(),
         email: this.formEmail.trim(),
         phone: this.formPhone.trim(),
@@ -62,7 +61,7 @@ export class ClientsList {
   }
 
   deleteClient(client: Client) {
-    this.clients.update(list => list.filter(c => c.id !== client.id));
+    this.clients.update(list => list.filter(c => c.clientId !== client.clientId));
   }
 
   cancelEdit() {

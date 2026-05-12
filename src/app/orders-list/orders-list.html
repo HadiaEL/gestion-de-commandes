@@ -12,7 +12,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (order of ordersList; track order.id) {
+      @for (order of ordersList; track order.orderId) {
         <app-order-item [order]="order" />
       }
     </tbody>

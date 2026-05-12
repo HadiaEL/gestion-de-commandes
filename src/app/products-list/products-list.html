@@ -40,7 +40,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (product of products(); track product.id) {
+      @for (product of products(); track product.productId) {
         <app-product-item
           [product]="product"
           (edit)="openEditForm($event)"

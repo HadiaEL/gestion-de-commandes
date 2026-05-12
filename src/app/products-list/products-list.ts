@@ -43,15 +43,15 @@ export class ProductsList {
     if (editing) {
       this.products.update(list =>
         list.map(p =>
-          p.id === editing.id
+          p.productId === editing.productId
             ? { ...p, name: this.formName.trim(), price: this.formPrice, description: this.formDescription.trim() }
             : p
         )
       );
     } else {
-      const maxId = this.products().reduce((max, p) => Math.max(max, p.id), 0);
+      
       const newProduct: Product = {
-        id: maxId + 1,
+        productId: Math.random().toString(),
         name: this.formName.trim(),
         price: this.formPrice,
         description: this.formDescription.trim(),
@@ -62,7 +62,7 @@ export class ProductsList {
   }
 
   deleteProduct(product: Product) {
-    this.products.update(list => list.filter(p => p.id !== product.id));
+    this.products.update(list => list.filter(p => p.productId !== product.productId));
   }
 
   cancelEdit() {

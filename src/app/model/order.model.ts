@@ -1,7 +1,7 @@
 export interface Order {
-  id: number;
-  client: string;
-  product: string;
+  orderId: string;
+  clientId: string;
+  productId: string;
   quantity: number;
   total: number;
   status: 'En attente' | 'Livrée' | 'Annulée';

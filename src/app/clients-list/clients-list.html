@@ -40,7 +40,7 @@
       </tr>
     </thead>
     <tbody>
-      @for (client of clients(); track client.id) {
+      @for (client of clients(); track client.clientId) {
         <app-client-item
           [client]="client"
           (edit)="openEditForm($event)"

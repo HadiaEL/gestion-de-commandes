@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { type Order } from '../model/order.model';
-import { ORDERS } from '../model/list-orders';
 import { OrderItem } from './order-item/order-item';
+import { OrdersListService } from './orders-list.service';
 
 @Component({
   selector: 'app-orders-list',
@@ -10,13 +10,24 @@ import { OrderItem } from './order-item/order-item';
   templateUrl: './orders-list.html',
   styleUrls: ['./orders-list.css'],
 })
-export class OrdersList {
+export class OrdersListComponent {
+
+  @Input({ required: true }) clientId!: string;
+  @Input ({required: true}) productId!: string;
+
+
+  constructor(private ordersListService: OrdersListService) {}
 
   get ordersList(): Order[] {
-    return ORDERS;
+    return this.ordersListService.getOrdersList();
   }
 
-  trackById(_index: number, order: Order): number {
-    return order.id;
+  get selectedOrdersListByClientId(): Order[] {
+    return this.ordersListService.getOrdersByClientId(this.clientId);
   }
+
+  get selectedOrdersListByProductId(): Order[] {
+    return this.ordersListService.getOrdersByProductId(this.productId);
+  }
+
 }
