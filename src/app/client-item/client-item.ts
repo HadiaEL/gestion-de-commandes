@@ -4,18 +4,7 @@ import { Client } from '../model/client.model';
 @Component({
   selector: 'app-client-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <tr>
-      <td>{{ client().id }}</td>
-      <td>{{ client().name }}</td>
-      <td>{{ client().email }}</td>
-      <td>{{ client().phone }}</td>
-      <td class="actions">
-        <button class="btn btn-edit" (click)="edit.emit(client())">✏️ Modifier</button>
-        <button class="btn btn-delete" (click)="confirmDelete()">🗑️ Supprimer</button>
-      </td>
-    </tr>
-  `,
+  templateUrl: './client-item.html',
   styleUrl: './client-item.css',
   host: { style: 'display: contents' },
 })

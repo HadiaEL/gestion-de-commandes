@@ -4,18 +4,7 @@ import { Product } from '../model/product.model';
 @Component({
   selector: 'app-product-item',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <tr>
-      <td>{{ product().id }}</td>
-      <td>{{ product().name }}</td>
-      <td class="price">{{ product().price }} €</td>
-      <td>{{ product().description }}</td>
-      <td class="actions">
-        <button class="btn btn-edit" (click)="edit.emit(product())">✏️ Modifier</button>
-        <button class="btn btn-delete" (click)="confirmDelete()">🗑️ Supprimer</button>
-      </td>
-    </tr>
-  `,
+  templateUrl: './product-item.html',
   styleUrl: './product-item.css',
   host: { style: 'display: contents' },
 })

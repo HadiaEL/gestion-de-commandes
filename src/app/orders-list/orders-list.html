@@ -1,0 +1,21 @@
+<section class="orders">
+  <h2>Liste des commandes</h2>
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Client</th>
+        <th>Produit</th>
+        <th>Quantité</th>
+        <th>Total</th>
+        <th>Statut</th>
+      </tr>
+    </thead>
+    <tbody>
+      <app-order-item
+        *ngFor="let order of orders(); trackBy: trackById"
+        [order]="order"
+      />
+    </tbody>
+  </table>
+</section>

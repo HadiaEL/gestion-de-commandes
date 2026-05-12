@@ -8,29 +8,7 @@ import { OrderItem } from '../order-item/order-item';
   selector: 'app-orders-list',
   imports: [NgFor, OrderItem],
   changeDetection: ChangeDetectionStrategy.OnPush,
-  template: `
-    <section class="orders">
-      <h2>Liste des commandes</h2>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Client</th>
-            <th>Produit</th>
-            <th>Quantité</th>
-            <th>Total</th>
-            <th>Statut</th>
-          </tr>
-        </thead>
-        <tbody>
-          <app-order-item
-            *ngFor="let order of orders(); trackBy: trackById"
-            [order]="order"
-          />
-        </tbody>
-      </table>
-    </section>
-  `,
+  templateUrl: './orders-list.html',
   styleUrl: './orders-list.css',
 })
 export class OrdersList {

@@ -1,0 +1,52 @@
+<section class="clients">
+  <div class="header">
+    <h2>Liste des clients</h2>
+    <button class="btn btn-add" (click)="openAddForm()">+ Ajouter un client</button>
+  </div>
+
+  @if (showForm()) {
+    <div class="form-overlay" (click)="cancelEdit()">
+      <form class="client-form" (ngSubmit)="saveClient()" (click)="$event.stopPropagation()">
+        <h3>{{ editingClient() ? 'Modifier le client' : 'Ajouter un client' }}</h3>
+
+        <label>Nom
+          <input type="text" [(ngModel)]="formName" name="name" required />
+        </label>
+
+        <label>Email
+          <input type="email" [(ngModel)]="formEmail" name="email" required />
+        </label>
+
+        <label>Téléphone
+          <input type="tel" [(ngModel)]="formPhone" name="phone" />
+        </label>
+
+        <div class="form-actions">
+          <button type="submit" class="btn btn-save">Enregistrer</button>
+          <button type="button" class="btn btn-cancel" (click)="cancelEdit()">Annuler</button>
+        </div>
+      </form>
+    </div>
+  }
+
+  <table>
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nom</th>
+        <th>Email</th>
+        <th>Téléphone</th>
+        <th>Actions</th>
+      </tr>
+    </thead>
+    <tbody>
+      @for (client of clients(); track client.id) {
+        <app-client-item
+          [client]="client"
+          (edit)="openEditForm($event)"
+          (delete)="deleteClient($event)"
+        />
+      }
+    </tbody>
+  </table>
+</section>
