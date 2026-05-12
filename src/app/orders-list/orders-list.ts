@@ -1,18 +1,20 @@
-import { ChangeDetectionStrategy, Component, signal } from '@angular/core';
-import { NgFor } from '@angular/common';
-import { Order } from '../model/order.model';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
+import { type Order } from '../model/order.model';
 import { ORDERS } from '../model/list-orders';
 import { OrderItem } from '../order-item/order-item';
 
 @Component({
   selector: 'app-orders-list',
-  imports: [NgFor, OrderItem],
+  imports: [OrderItem],
   changeDetection: ChangeDetectionStrategy.OnPush,
   templateUrl: './orders-list.html',
-  styleUrl: './orders-list.css',
+  styleUrls: ['./orders-list.css'],
 })
 export class OrdersList {
-  protected readonly orders = signal<Order[]>(ORDERS);
+
+  get ordersList(): Order[] {
+    return ORDERS;
+  }
 
   trackById(_index: number, order: Order): number {
     return order.id;

@@ -12,10 +12,9 @@
       </tr>
     </thead>
     <tbody>
-      <app-order-item
-        *ngFor="let order of orders(); trackBy: trackById"
-        [order]="order"
-      />
+      @for (order of ordersList; track order.id) {
+        <app-order-item [order]="order" />
+      }
     </tbody>
   </table>
 </section>

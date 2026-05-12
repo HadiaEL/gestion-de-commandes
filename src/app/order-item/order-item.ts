@@ -1,6 +1,6 @@
-import { ChangeDetectionStrategy, Component, input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { NgClass, NgStyle } from '@angular/common';
-import { Order } from '../model/order.model';
+import { type Order } from '../model/order.model';
 
 @Component({
   selector: 'app-order-item',
@@ -11,5 +11,7 @@ import { Order } from '../model/order.model';
   host: { style: 'display: contents' },
 })
 export class OrderItem {
-  order = input.required<Order>();
+  @Input() order!: Order;
+
+  
 }
