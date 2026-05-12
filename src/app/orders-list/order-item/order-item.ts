@@ -13,5 +13,5 @@ import { type Order } from '../../model/order.model';
 export class OrderItem {
   @Input() order!: Order;
 
-  
+
 }
