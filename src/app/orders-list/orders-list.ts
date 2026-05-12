@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { type Order } from '../model/order.model';
 import { ORDERS } from '../model/list-orders';
-import { OrderItem } from '../order-item/order-item';
+import { OrderItem } from './order-item/order-item';
 
 @Component({
   selector: 'app-orders-list',
