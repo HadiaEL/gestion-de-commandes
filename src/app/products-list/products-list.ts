@@ -3,10 +3,11 @@ import { ProductsListService } from './products-list.service';
 import { ProductItem } from './product-item/product-item';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { type Product } from '../model/product.model';
+import { NewProductItem } from './new-product-item/new-product-item';
 
 @Component({
   selector: 'app-products-list',
-  imports: [ProductItem],
+  imports: [ProductItem, NewProductItem],
   templateUrl: './products-list.html',
   styleUrls: ['./products-list.css'],
 })

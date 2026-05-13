@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { type Product } from '../model/product.model';
+import { NewProductData, type Product } from '../model/product.model';
 import { PRODUCTS } from '../model/list-products';
 
 @Injectable({ providedIn: 'root' })
@@ -15,8 +15,13 @@ export class ProductsListService {
         return this.productsList.find(product => product.productId === id);
     }   
 
-    addProduct(product: Product) {
-        this.productsList.push(product);
+    addNewProduct(product: NewProductData) {
+        this.productsList.push({
+            productId: Math.max(...this.productsList.map(p => p.productId)) + 1,
+            name: product.name,
+            price: product.price,
+            description: product.description
+        });
     }
 
     updateProduct(updatedProduct: Product) {

@@ -1,7 +1,12 @@
+@if (isAddingProduct) {
+    <app-new-product-item (closeNewProduct)="onCloseAddingProduct()"/>
+}
+
+
 <section class="products">
   <div class="header">
     <h2>Liste des produits</h2>
-    <button class="btn btn-add">+ Ajouter un produit</button>
+    <button class="btn btn-add" (click)="onStartAddingProduct()">+ Ajouter un produit</button>
   </div>
 
   <table>
