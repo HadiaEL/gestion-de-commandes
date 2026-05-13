@@ -1,10 +1,10 @@
 <div class="backdrop"></div>
 <dialog open>
-  <h2>Ajouter un produit</h2>
+  <h2>{{ isEditMode ? 'Modifier le Produit ' + entredProductName : 'Ajouter un produit' }}</h2>
   <form (ngSubmit)="onSubmit()">
     <p>
       <label for="title">Nom du produit</label>
-      <input type="text" id="title" name="title" [(ngModel)]="entredProductName" />
+      <input type="text" id="title" name="title" [(ngModel)]="entredProductName" [readonly]="isEditMode" />
     </p>
 
     <p>
@@ -19,7 +19,7 @@
 
     <p class="actions">
       <button type="button" (click)="onClose()">Annuler</button>
-      <button type="submit">Créer</button>
+      <button type="submit">{{ isEditMode ? 'Modifier' : 'Créer' }}</button>
     </p>
   </form>
 </dialog>

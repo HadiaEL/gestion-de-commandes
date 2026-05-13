@@ -4,7 +4,7 @@
   <td class="price">{{ product().price }} €</td>
   <td>{{ product().description }}</td>
   <td class="actions">
-    <button class="btn btn-edit" (click)="edit.emit(product())">✏️ Modifier</button>
-    <button class="btn btn-delete" (click)="confirmDelete()">🗑️ Supprimer</button>
+    <button class="btn btn-edit" (click)="onUpdateProduct(product())">✏️ Modifier</button>
+    <button class="btn btn-delete" (click)="onDeleteProduct(product())">🗑️ Supprimer</button>
   </td>
 </tr>
