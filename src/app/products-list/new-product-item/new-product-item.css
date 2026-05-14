@@ -1,94 +1,100 @@
-.backdrop {
-  background-color: rgba(0, 0, 0, 0.7);
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100vh;
-}
-
-dialog {
-  width: 90%;
-  max-width: 30rem;
-  background-color: #ffffff;
-  border-radius: 6px;
-  border: none;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.4);
-  overflow: hidden;
-  padding: 1rem;
-  top: 5rem;
-}
-
-h2 {
-  margin: 0;
-  color: #114364;
-}
-
-label {
-  display: block;
-  font-weight: bold;
-  font-size: 0.85rem;
-  color: #2980b9;
-}
-
 input,
 textarea {
   width: 100%;
   font: inherit;
   padding: 0.15rem 0.25rem;
   border-radius: 4px;
-  border: 1px solid #2980b9;
-  background-color: #e7f6ff;
-  color: #000000;
+  border: 1px solid #bdc3c7;
 }
 
-.actions {
-  margin: 1rem 0 0;
-  display: flex;
-  justify-content: flex-end;
-  gap: 0.25rem;
-}
-
-button {
-  font: inherit;
-  cursor: pointer;
+.btn {
   border: none;
-  padding: 0.35rem 1.25rem;
+  padding: 0.5rem 1rem;
   border-radius: 4px;
-  background-color: transparent;
+  cursor: pointer;
+  font-size: 0.9rem;
+  font-weight: 600;
 }
 
-button[type="button"] {
-  color: #2980b9;
+.btn-add {
+  background-color: #27ae60;
+  color: white;
 }
 
-button[type="button"]:hover,
-button[type="button"]:active {
-  color: #2980b9;
+.btn-add:hover {
+  background-color: #219a52;
 }
 
-button[type="submit"] {
+.btn-save {
   background-color: #2980b9;
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.3);
-  transition: all 0.3s ease;
-  color: #ffffff;
+  color: white;
 }
 
-button[type="submit"]:hover,
-button[type="submit"]:active {
-  background-color: #065183;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+.btn-save:hover {
+  background-color: #2472a4;
 }
 
-button[type="button"]:hover,
-button[type="button"]:active {
-  background-color: #065183;
-  box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
-  color: #ffffff;
+.btn-cancel {
+  background-color: #95a5a6;
+  color: white;
 }
 
-@media (min-width: 768px) {
-  dialog {
-    padding: 2rem;
-  }
+.btn-cancel:hover {
+  background-color: #7f8c8d;
+}
+
+.form-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.4);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+}
+
+.product-form {
+  background: white;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  width: 400px;
+  display: flex;
+  flex-direction: column;
+  gap: 0rem;
+}
+
+.product-form h3 {
+  margin: 0 0 0.5rem;
+  color: #2c3e50;
+}
+
+.product-form label {
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+  font-weight: 600;
+  color: #34495e;
+}
+
+.product-form input {
+  padding: 0.5rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 0.95rem;
+  
+}
+
+.product-form input:focus, 
+.product-form textarea:focus {
+  outline: none;
+  border-color: #2980b9;
+  box-shadow: 0 0 0 2px rgba(41, 128, 185, 0.2);
+}
+
+.form-actions {
+  display: flex;
+  gap: 0.5rem;
+  justify-content: flex-end;
+  margin-top: 0.5rem;
 }
