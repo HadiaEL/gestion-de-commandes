@@ -29,7 +29,7 @@ export class ClientsList {
 
   onNewClientSubmitted(event: { newClient: Omit<Client, 'clientId'> }) {
     const newClient: Client = {
-      clientId: Math.random(),
+      clientId: Math.max(...this.clients().map(c => c.clientId)) + 1,
       name: event.newClient.name,
       email: event.newClient.email,
       phone: event.newClient.phone,
