@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, input, output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, Output, EventEmitter } from '@angular/core';
 import { type Client } from '../../model/client.model';
 
 @Component({
@@ -9,13 +9,13 @@ import { type Client } from '../../model/client.model';
   host: { style: 'display: contents' },
 })
 export class ClientItem {
-  client = input.required<Client>();
-  edit = output<Client>();
-  delete = output<Client>();
+  @Input({required: true }) client!: Client;
+  @Output() edit = new EventEmitter<Client>()
+  @Output() delete = new EventEmitter<Client>();
 
   confirmDelete() {
-    if (confirm(`Supprimer le client "${this.client().name}" ?`)) {
-      this.delete.emit(this.client());
+    if (confirm(`Supprimer le client "${this.client.name}" ?`)) {
+      this.delete.emit(this.client);
     }
   }
 }

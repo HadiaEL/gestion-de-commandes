@@ -1,0 +1,9 @@
+<div class="overlay" (click)="onCancel()">
+  <div class="confirm-dialog" (click)="$event.stopPropagation()">
+    <p>Êtes-vous sûr de vouloir supprimer le {{ itemType }} <strong>{{ itemName }}</strong> ?</p>
+    <div class="confirm-actions">
+      <button class="btn btn-cancel" (click)="onCancel()">Annuler</button>
+      <button class="btn btn-confirm-delete" (click)="onConfirm()">Supprimer</button>
+    </div>
+  </div>
+</div>
