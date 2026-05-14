@@ -5,6 +5,15 @@
   <td>{{ client.phone }}</td>
   <td class="actions">
     <button class="btn btn-edit" (click)="edit.emit(client)">✏️ Modifier</button>
-    <button class="btn btn-delete" (click)="confirmDelete()">🗑️ Supprimer</button>
+    <button class="btn btn-delete" (click)="openDeleteModal()">🗑️ Supprimer</button>
   </td>
 </tr>
+
+@if (showDeleteModal) {
+  <app-delete-modale
+    [itemName]="client.name"
+    [itemType]="'client'"
+    (confirm)="onConfirmDelete()"
+    (cancel)="onCancelDelete()"
+  />
+}

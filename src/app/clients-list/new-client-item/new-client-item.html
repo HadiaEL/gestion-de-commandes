@@ -1,0 +1,24 @@
+<dialog open>
+  <div class="form-overlay" (click)="onClose()">
+    <form class="client-form" (ngSubmit)="onSubmit()" (click)="$event.stopPropagation()">
+      <h3>{{ isEditMode ? 'Modifier le client ' + entredClientName : 'Ajouter un client' }}</h3>
+
+      <label>Nom
+        <input type="text" name="name" [(ngModel)]="entredClientName" required />
+      </label>
+
+      <label>Email
+        <input type="email" name="email" [(ngModel)]="entredClientEmail" required />
+      </label>
+
+      <label>Téléphone
+        <input type="tel" name="phone" [(ngModel)]="entredClientPhone" />
+      </label>
+
+      <div class="form-actions">
+        <button type="submit" class="btn btn-save">Enregistrer</button>
+        <button type="button" class="btn btn-cancel" (click)="onClose()">Annuler</button>
+      </div>
+    </form>
+  </div>
+</dialog>
