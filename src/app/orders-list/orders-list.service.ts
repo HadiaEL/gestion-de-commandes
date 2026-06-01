@@ -6,6 +6,12 @@ import { type Order } from '../model/order.model';
 export class OrdersListService {
 
     private ordersList = ORDERS;
+    constructor() {
+        const storedOrders = localStorage.getItem('ordersList');
+        if (storedOrders) {
+            this.ordersList = JSON.parse(storedOrders);
+        }
+    }
 
     getOrdersList(): Order[] {
         return this.ordersList;
@@ -29,6 +35,14 @@ export class OrdersListService {
             ...order,
             client: { clientId } as any
         });
-    }   
+    }  
+    
+    removeOrdersByProductId(productId: number) {
+        this.ordersList = this.ordersList.filter(order => order.product.productId !== productId);
+    }
+
+    private saveOrders() {
+        localStorage.setItem('ordersList', JSON.stringify(this.ordersList));
+    }
 
 }

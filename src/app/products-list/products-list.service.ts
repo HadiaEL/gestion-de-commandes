@@ -7,6 +7,13 @@ export class ProductsListService {
 
     private productsList = PRODUCTS;
 
+    constructor() {
+        const storedProducts = localStorage.getItem('productsList');
+        if (storedProducts) {
+            this.productsList = JSON.parse(storedProducts);
+        }
+    }
+
     getProductsList(): Product[] {
         return this.productsList;
     }
@@ -28,10 +35,17 @@ export class ProductsListService {
         this.productsList = this.productsList.map(product =>
             product.productId === updatedProduct.productId ? updatedProduct : product
         );
+        this.saveProduct();
     }
 
     deleteProduct(productId: number) {
         this.productsList = this.productsList.filter(product => product.productId !== productId);
-    }       
+        this.saveProduct();
+
+    }   
+
+    private saveProduct () {
+        localStorage.setItem('productsList', JSON.stringify(this.productsList));
+    }
 
 }
