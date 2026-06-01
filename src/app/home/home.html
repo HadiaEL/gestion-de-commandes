@@ -1,24 +1,40 @@
 <section class="home">
-  <h2>Bienvenue dans l'application de Gestion</h2>
-  <p>Choisissez une section pour commencer :</p>
+  <h2>Bienvenue, {{ authService.getUser()?.username }} !</h2>
+  <p>
+    @if (authService.isGestionnaire()) {
+      Vous êtes connecté en tant que <strong>gestionnaire</strong>. Vous avez accès à l'ensemble des fonctionnalités.
+    } @else {
+      Vous êtes connecté en tant qu'<strong>utilisateur</strong>. Vous pouvez consulter les produits et passer des commandes.
+    }
+  </p>
 
   <div class="cards">
     <a routerLink="/products" class="card card-products">
       <span class="card-icon">🛒</span>
       <h3>Produits</h3>
-      <p>Gérer les produits : ajouter, modifier ou supprimer.</p>
+      @if (authService.isGestionnaire()) {
+        <p>Gérer les produits : ajouter, modifier ou supprimer.</p>
+      } @else {
+        <p>Consulter la liste des produits disponibles.</p>
+      }
     </a>
 
     <a routerLink="/orders" class="card card-orders">
       <span class="card-icon">📦</span>
       <h3>Commandes</h3>
-      <p>Consulter et suivre toutes les commandes.</p>
+      @if (authService.isGestionnaire()) {
+        <p>Consulter et gérer toutes les commandes.</p>
+      } @else {
+        <p>Passer et suivre vos commandes.</p>
+      }
     </a>
 
-    <a routerLink="/clients" class="card card-clients">
-      <span class="card-icon">👥</span>
-      <h3>Clients</h3>
-      <p>Gérer les clients : ajouter, modifier ou supprimer.</p>
-    </a>
+    @if (authService.isGestionnaire()) {
+      <a routerLink="/clients" class="card card-clients">
+        <span class="card-icon">👥</span>
+        <h3>Clients</h3>
+        <p>Gérer les clients : ajouter, modifier ou supprimer.</p>
+      </a>
+    }
   </div>
 </section>

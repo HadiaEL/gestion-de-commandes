@@ -29,16 +29,26 @@ export class OrdersListService {
         return this.ordersList.filter(order => order.product.productId === productId);
     }
 
-    addOrder(order: Order, clientId: number) {
-        
-        this.ordersList.push({
-            ...order,
-            client: { clientId } as any
-        });
-    }  
-    
+    addOrder(order: Order) {
+        this.ordersList.push(order);
+        this.saveOrders();
+    }
+
+    updateOrderStatus(orderId: number, status: Order['status']) {
+        const order = this.ordersList.find(o => o.orderId === orderId);
+        if (order) {
+            order.status = status;
+            this.saveOrders();
+        }
+    }
+
     removeOrdersByProductId(productId: number) {
         this.ordersList = this.ordersList.filter(order => order.product.productId !== productId);
+        this.saveOrders();
+    }
+
+    getNextOrderId(): number {
+        return Math.max(...this.ordersList.map(o => o.orderId), 0) + 1;
     }
 
     private saveOrders() {

@@ -6,7 +6,9 @@
 <section class="products">
   <div class="header">
     <h2>Liste des produits</h2>
-    <button class="btn btn-add" (click)="onStartAddingProduct()">+ Ajouter un produit</button>
+    @if (authService.isGestionnaire()) {
+      <button class="btn btn-add" (click)="onStartAddingProduct()">+ Ajouter un produit</button>
+    }
   </div>
 
   <table>
@@ -16,13 +18,16 @@
         <th>Nom</th>
         <th>Prix</th>
         <th>Description</th>
-        <th>Actions</th>
+        @if (authService.isGestionnaire()) {
+          <th>Actions</th>
+        }
       </tr>
     </thead>
     <tbody>
       @for (product of products; track product.productId) {
         <app-product-item
           [product]="product"
+          [showActions]="authService.isGestionnaire()"
         />
       }
     </tbody>

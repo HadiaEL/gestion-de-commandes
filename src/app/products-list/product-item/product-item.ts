@@ -14,6 +14,7 @@ import { DeleteModale } from '../../shared/delete-modale/delete-modale';
 })
 export class ProductItem {
   @Input({required: true }) product!: Product;
+  @Input() showActions = true;
   @Output() edit = new EventEmitter<Product>()
   @Output() delete = new EventEmitter<Product>();
 

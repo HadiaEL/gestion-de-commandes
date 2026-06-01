@@ -1,7 +1,9 @@
 <tr>
   <td>{{ order.orderId }}</td>
-  <td>{{ order.client.clientId }}</td>
-  <td>{{ order.product.productId }}</td>
+  @if (isGestionnaire) {
+    <td>{{ order.client.name }}</td>
+  }
+  <td>{{ order.product.name }}</td>
   <td>{{ order.quantity }}</td>
   <td
     [ngStyle]="{
@@ -21,4 +23,17 @@
   >
     {{ order.status }}
   </td>
+  @if (isGestionnaire) {
+    <td>
+      <select
+        class="status-select"
+        [ngModel]="order.status"
+        (ngModelChange)="onStatusChange($event)"
+      >
+        <option value="En attente">En attente</option>
+        <option value="Livrée">Livrée</option>
+        <option value="Annulée">Annulée</option>
+      </select>
+    </td>
+  }
 </tr>

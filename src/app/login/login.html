@@ -1,0 +1,47 @@
+<section class="login-page">
+  <div class="login-card">
+    <div class="login-header">
+      <span class="login-icon">🔐</span>
+      <h2>Connexion</h2>
+      <p>Gestion de Commandes</p>
+    </div>
+
+    <form (ngSubmit)="onSubmit()">
+      @if (errorMessage) {
+        <div class="error-message">{{ errorMessage }}</div>
+      }
+
+      <label>
+        Nom d'utilisateur
+        <input
+          type="text"
+          name="username"
+          [(ngModel)]="username"
+          required
+          autocomplete="username"
+          placeholder="Entrez votre nom d'utilisateur"
+        />
+      </label>
+
+      <label>
+        Mot de passe
+        <input
+          type="password"
+          name="password"
+          [(ngModel)]="password"
+          required
+          autocomplete="current-password"
+          placeholder="Entrez votre mot de passe"
+        />
+      </label>
+
+      <button type="submit" class="btn btn-login">Se connecter</button>
+    </form>
+
+    <div class="login-help">
+      <p><strong>Comptes de démonstration :</strong></p>
+      <p>Gestionnaire : <code>admin</code> / <code>admin123</code></p>
+      <p>Utilisateur : <code>alice</code> / <code>alice123</code></p>
+    </div>
+  </div>
+</section>

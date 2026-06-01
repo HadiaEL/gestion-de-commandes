@@ -4,6 +4,16 @@
     <li><a routerLink="/" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">Accueil</a></li>
     <li><a routerLink="/products" routerLinkActive="active">Produits</a></li>
     <li><a routerLink="/orders" routerLinkActive="active">Commandes</a></li>
-    <li><a routerLink="/clients" routerLinkActive="active">Clients</a></li>
+    @if (authService.isGestionnaire()) {
+      <li><a routerLink="/clients" routerLinkActive="active">Clients</a></li>
+    }
   </ul>
+  <div class="user-info">
+    <span class="user-badge">
+      {{ authService.isGestionnaire() ? '👔' : '👤' }}
+      {{ authService.getUser()?.username }}
+      <span class="role-tag">{{ authService.getUser()?.role }}</span>
+    </span>
+    <button class="btn-logout" (click)="onLogout()">Déconnexion</button>
+  </div>
 </nav>

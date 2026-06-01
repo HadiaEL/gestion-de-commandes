@@ -1,0 +1,45 @@
+<section class="new-order">
+  <h2>Passer une commande</h2>
+
+  <form class="order-form" (ngSubmit)="onSubmit()">
+    <label>
+      Produit
+      <select name="product" [(ngModel)]="selectedProductId" required>
+        <option [ngValue]="null" disabled>-- Choisir un produit --</option>
+        @for (product of products; track product.productId) {
+          <option [ngValue]="product.productId">
+            {{ product.name }} — {{ product.price }} €
+          </option>
+        }
+      </select>
+    </label>
+
+    <label>
+      Quantité
+      <input
+        type="number"
+        name="quantity"
+        [(ngModel)]="quantity"
+        min="1"
+        required
+      />
+    </label>
+
+    @if (selectedProduct) {
+      <div class="order-summary">
+        <h3>Récapitulatif</h3>
+        <p><strong>Produit :</strong> {{ selectedProduct.name }}</p>
+        <p><strong>Prix unitaire :</strong> {{ selectedProduct.price }} €</p>
+        <p><strong>Quantité :</strong> {{ quantity }}</p>
+        <p class="total"><strong>Total :</strong> {{ total }} €</p>
+      </div>
+    }
+
+    <div class="form-actions">
+      <button type="submit" class="btn btn-save" [disabled]="!selectedProductId || quantity < 1">
+        Confirmer la commande
+      </button>
+      <button type="button" class="btn btn-cancel" (click)="onCancel()">Annuler</button>
+    </div>
+  </form>
+</section>

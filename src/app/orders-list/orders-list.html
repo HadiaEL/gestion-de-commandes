@@ -1,19 +1,33 @@
 <section class="orders">
-  <h2>Liste des commandes</h2>
+  <div class="header">
+    <h2>{{ authService.isGestionnaire() ? 'Toutes les commandes' : 'Mes commandes' }}</h2>
+    @if (authService.isUtilisateur()) {
+      <a routerLink="/orders/new" class="btn btn-add">+ Nouvelle commande</a>
+    }
+  </div>
   <table>
     <thead>
       <tr>
         <th>ID</th>
-        <th>Client</th>
+        @if (authService.isGestionnaire()) {
+          <th>Client</th>
+        }
         <th>Produit</th>
         <th>Quantité</th>
         <th>Total</th>
         <th>Statut</th>
+        @if (authService.isGestionnaire()) {
+          <th>Actions</th>
+        }
       </tr>
     </thead>
     <tbody>
       @for (order of ordersList; track order.orderId) {
-        <app-order-item [order]="order" />
+        <app-order-item
+          [order]="order"
+          [isGestionnaire]="authService.isGestionnaire()"
+          (statusChanged)="onStatusChanged()"
+        />
       }
     </tbody>
   </table>

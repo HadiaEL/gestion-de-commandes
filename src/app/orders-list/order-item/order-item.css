@@ -10,3 +10,11 @@ td {
 .en-attente { color: #e67e22; }
 .livree { color: #27ae60; }
 .annulee { color: #e74c3c; }
+.status-select {
+  padding: 0.35rem 0.5rem;
+  border: 1px solid #bdc3c7;
+  border-radius: 4px;
+  font-size: 0.85rem;
+  cursor: pointer;
+  background: white;
+}

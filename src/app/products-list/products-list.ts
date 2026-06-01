@@ -4,6 +4,7 @@ import { ProductItem } from './product-item/product-item';
 import { Input, Output, EventEmitter } from '@angular/core';
 import { type Product } from '../model/product.model';
 import { NewProductItem } from './new-product-item/new-product-item';
+import { AuthService } from '../auth/auth.service';
 
 @Component({
   selector: 'app-products-list',
@@ -21,7 +22,10 @@ export class ProductsList {
 
   isAddingProduct = false;
 
-  constructor(private productsListService: ProductsListService) {}
+  constructor(
+    private productsListService: ProductsListService,
+    protected authService: AuthService
+  ) {}
 
   get products() {
     return this.productsListService.getProductsList();
